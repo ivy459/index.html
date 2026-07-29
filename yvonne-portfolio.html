@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yvonne Bosire — Frontend Developer & Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0b0c;
+    --bg-panel:#141315;
+    --red:#e0263f;
+f    --red-deep:#3a0a12;
+    --white:#f5f2ee;
+    --gray:#8d8a91;
+    --line:#2a2830;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Work Sans',sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--red);color:var(--white);}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  .mono{font-family:'Space Mono',monospace;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--red);
+  }
+
+  /* NAV */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,11,12,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 32px;max-width:1180px;margin:0 auto;
+  }
+  .nav-logo{font-family:'Space Mono',monospace;font-weight:700;font-size:15px;}
+  .nav-logo span{color:var(--red);}
+  .nav-links{display:flex;gap:28px;font-size:14px;}
+  .nav-links a{color:var(--gray);transition:color .2s;}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--white);outline:none;}
+  .nav-cta{
+    font-family:'Space Mono',monospace;font-size:12px;
+    border:1px solid var(--red);color:var(--red);
+    padding:8px 16px;border-radius:2px;transition:all .2s;
+  }
+  .nav-cta:hover,.nav-cta:focus-visible{background:var(--red);color:var(--white);outline:none;}
+  @media(max-width:760px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{position:relative;padding:80px 0 60px;overflow:hidden;}
+  .hero-bg-text{
+    position:absolute;top:6px;left:0;width:100%;
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(90px,17vw,220px);
+    color:transparent;
+    -webkit-text-stroke:1px #241b1d;
+    line-height:1;letter-spacing:-0.02em;
+    white-space:nowrap;user-select:none;pointer-events:none;
+    z-index:0;
+  }
+  .hero-inner{position:relative;z-index:2;}
+  .hero-greet{
+    font-family:'Space Mono',monospace;color:var(--gray);font-size:15px;margin-bottom:14px;
+  }
+  .hero-greet .cursor{
+    display:inline-block;width:8px;height:16px;background:var(--red);
+    margin-left:4px;vertical-align:middle;animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+  h1.hero-name{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(42px,8vw,88px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+  }
+  h1.hero-name .last{color:var(--red);display:block;}
+  .hero-role{
+    font-family:'Space Mono',monospace;
+    color:var(--red);
+    font-size:clamp(14px,2vw,18px);
+    margin-top:18px;letter-spacing:0.04em;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;
+    margin-top:36px;align-items:start;
+  }
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;}}
+  .hero-bio{color:#c9c6cd;font-size:16px;line-height:1.7;max-width:46ch;}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+  .badge{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.05em;
+    border:1px solid var(--line);color:var(--gray);
+    padding:7px 12px;border-radius:2px;text-transform:uppercase;
+  }
+
+  /* terminal signature */
+  .hero-visuals{display:flex;flex-direction:column;gap:18px;}
+  .portrait{
+    position:relative;
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(224,38,63,0.15);
+  }
+  .portrait img{
+    display:block;width:100%;height:100%;
+    aspect-ratio:4/4.4;object-fit:cover;
+    filter:grayscale(15%) contrast(1.05);
+  }
+  .portrait::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(11,11,12,0) 55%,rgba(11,11,12,0.55) 100%);
+    pointer-events:none;
+  }
+  .portrait-tag{
+    position:absolute;left:14px;bottom:12px;z-index:2;
+    font-family:'Space Mono',monospace;font-size:11px;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--white);
+  }
+  .portrait-tag .dot-live{
+    display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--red);margin-right:6px;vertical-align:middle;
+  }
+  .terminal{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(224,38,63,0.15);
+  }
+  .terminal-bar{
+    display:flex;align-items:center;gap:6px;
+    padding:10px 14px;border-bottom:1px solid var(--line);
+    background:#18171a;
+  }
+  .dot{width:9px;height:9px;border-radius:50%;}
+  .dot.r{background:#e0263f;}
+  .dot.y{background:#5a5560;}
+  .dot.g{background:#5a5560;}
+  .terminal-title{
+    margin-left:8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--gray);
+  }
+  .terminal-body{
+    padding:20px;font-family:'Space Mono',monospace;font-size:13px;line-height:1.85;
+    color:#d7d4da;min-height:180px;
+  }
+  .terminal-body .tk{color:var(--red);}
+  .terminal-body .str{color:#9fd3a0;}
+  .terminal-body .com{color:#6d6a72;}
+  .type-cursor{display:inline-block;width:7px;height:14px;background:var(--red);vertical-align:middle;animation:blink 1s step-end infinite;}
+
+  section{padding:90px 0;border-top:1px solid var(--line);}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:44px;flex-wrap:wrap;gap:16px;
+  }
+  h2.section-title{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(26px,4vw,38px);text-transform:uppercase;
+  }
+
+  /* ABOUT / SKILLS */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  @media(max-width:820px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:#c9c6cd;line-height:1.8;margin-bottom:18px;font-size:15.5px;}
+  .traits{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .trait{
+    font-size:12px;font-family:'Space Mono',monospace;
+    color:var(--white);background:var(--red-deep);
+    border:1px solid #5a1420;padding:8px 14px;border-radius:20px;
+  }
+  .skills-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .skill-item{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 16px;border:1px solid var(--line);border-radius:4px;
+    font-size:14px;transition:border-color .2s,background .2s;
+  }
+  .skill-item:hover{border-color:var(--red);background:var(--bg-panel);}
+  .skill-item .idx{font-family:'Space Mono',monospace;color:var(--red);font-size:12px;}
+
+  /* PROJECTS */
+  .projects{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .project-row{
+    display:grid;grid-template-columns:80px 1fr auto;align-items:center;
+    gap:24px;padding:28px 24px;background:var(--bg);transition:background .25s;
+  }
+  .project-row:hover{background:var(--bg-panel);}
+  .project-idx{font-family:'Space Mono',monospace;color:var(--red);font-size:14px;}
+  .project-name{font-family:'Archivo Black',sans-serif;font-size:clamp(18px,3vw,26px);text-transform:uppercase;}
+  .project-desc{color:var(--gray);font-size:13.5px;margin-top:6px;font-family:'Space Mono',monospace;}
+  .project-arrow{
+    width:38px;height:38px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;color:var(--red);
+    transition:transform .25s,border-color .25s;
+  }
+  .project-row:hover .project-arrow{transform:rotate(45deg);border-color:var(--red);}
+  @media(max-width:600px){.project-row{grid-template-columns:40px 1fr;}.project-arrow{display:none;}}
+
+  /* APPROACH */
+  .approach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  @media(max-width:820px){.approach-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.approach-grid{grid-template-columns:1fr;}}
+  .approach-item{background:var(--bg);padding:28px 22px;}
+  .approach-num{font-family:'Space Mono',monospace;color:var(--red);font-size:12px;}
+  .approach-title{font-weight:600;font-size:16px;margin:10px 0 8px;}
+  .approach-desc{color:var(--gray);font-size:13.5px;line-height:1.6;}
+
+  /* CONTACT */
+  .contact{
+    background:var(--red-deep);border-top:1px solid var(--line);
+    border-radius:0;
+  }
+  .contact-inner{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:50px;align-items:center;
+  }
+  @media(max-width:820px){.contact-inner{grid-template-columns:1fr;}}
+  h2.contact-title{
+    font-family:'Archivo Black',sans-serif;font-size:clamp(34px,6vw,58px);
+    text-transform:uppercase;line-height:1;
+  }
+  h2.contact-title .accent{color:var(--red);}
+  .contact-links{display:flex;flex-direction:column;gap:14px;}
+  .contact-link{
+    display:flex;align-items:center;gap:14px;
+    padding:16px 18px;border:1px solid #5a1420;border-radius:4px;
+    font-family:'Space Mono',monospace;font-size:14px;transition:border-color .2s,background .2s;
+  }
+  .contact-link:hover,.contact-link:focus-visible{border-color:var(--red);background:rgba(224,38,63,0.08);outline:none;}
+  .contact-link .ico{color:var(--red);font-size:16px;}
+
+  footer{
+    padding:28px 0;text-align:center;font-family:'Space Mono',monospace;
+    font-size:12px;color:var(--gray);border-top:1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">YVONNE<span>.dev</span></div>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#approach">Approach</a>
+    </nav>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg-text">DEVELOPER · ANALYST · DEVELOPER ·</div>
+  <div class="wrap hero-inner">
+    <abbr< class="hero-greet">console.log("hello world")<span class="cursor"></span></p>
+    <h1 class="hero-name">YVONNE<span class
+      ="last">BOSIRE</span></h1>
+    <p class="hero-role">FRONTEND DEVELOPER &amp; DATA ANALYST — IN TRAINING</p>
+
+    <div class="hero-grid">
+      <div>
+        <p class="hero-bio">I love computer science because it challenges me to be creative and think critically. Currently studying at Kisii University, building clean, functional web experiences and learning to turn raw data into clear decisions.</p>
+        <div class="badges">
+          <span class="badge">B.Sc. Computer Science</span>
+          <span class="badge">Kisii University</span>
+          <span class="badge">Open to Opportunities</span>
+        </div>
+      </div>
+
+      <div class="hero-visuals">
+        <div class="portrait">
+          <img src="yvonne.jpeg" alt="Yvonne Bosire" style="width: 280px; height:280px; object-fit: cover;border-radius: 8px;border:1px solid #2a2830;display:block;margin:20px 0;">
+          <span class="portrait-tag"><span class="dot-live"></span>Yvonne, Kisii University</span>
+        </div>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="terminal-title">about-me.js</span>
+          </div>
+          <div class="terminal-body" id="typedBox"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <p class="eyebrow">// About</p>
+      <h2 class="section-title" style="margin-top:10px;">How I work</h2>
+      <div class="about-text" style="margin-top:24px;">
+        <p>I'm hardworking and disciplined about the details — the kind of person who'll rebuild a layout twice to get the spacing right. I try to stay trustworthy in how I communicate progress, and empathetic in how I think about the people who'll actually use what I build.</p>
+        <p>I see myself as a visionary in training: someone still learning the tools, but already thinking about where they can take me — from frontend interfaces to the data behind them.</p>
+      </div>
+      <div class="traits">
+        <span class="trait">Hardworking</span>
+        <span class="trait">Disciplined</span>
+        <span class="trait">Trustworthy</span>
+        <span class="trait">Visionary</span>
+        <span class="trait">Empathetic</span>
+      </div>
+    </div>
+
+    <div id="skills">
+      <p class="eyebrow">// Skills</p>
+      <h2 class="section-title" style="margin-top:10px;">What I bring</h2>
+      <div class="skills-list" style="margin-top:24px;">
+        <div class="skill-item"><span>HTML &amp; CSS</span><span class="idx mono">01</span></div>
+        <div class="skill-item"><span>JavaScript</span><span class="idx mono">02</span></div>
+        <div class="skill-item"><span>Website Design</span><span class="idx mono">03</span></div>
+        <div class="skill-item"><span>Fast &amp; Accurate Typing</span><span class="idx mono">04</span></div>
+        <div class="skill-item"><span>Problem Solving</span><span class="idx mono">05</span></div>
+        <div class="skill-item"><span>Data Analysis (learning)</span><span class="idx mono">06</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">// Selected Work</p>
+        <h2 class="section-title" style="margin-top:10px;">Projects</h2>
+      </div>
+    </div>
+    <div class="projects">
+      <div class="project-row">
+        <span class="project-idx">01</span>
+        <div>
+          <div class="project-name">HTML Calculator</div>
+          <div class="project-desc">Built from scratch with vanilla JavaScript — clean logic, no frameworks.</div>
+        </div>
+f        <div class="project-arrow">→</div>
+      </div>
+      <div class="project-row">
+        <span class="project-idx">02</span>
+        <div>
+          <div class="project-name">Personal Website Build</div>
+          <div class="project-desc">Designed and coded a complete, functioning website end to end.</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <p class="eyebrow">// Approach</p>
+    <h2 class="section-title" style="margin-top:10px;margin-bottom:44px;">How I build</h2>
+    <div class="approach-grid">
+      <div class="approach-item">
+        <p class="approach-num">01</p>
+        <p class="approach-title">Understand</p>
+        <p class="approach-desc">Get clear on the goal and the person it's for before writing a line of code.</p>
+      </div>
+      <div class="approach-item">
+        <p class="approach-num">02</p>
+        <p class="approach-title">Structure</p>
+        <p class="approach-desc">Plan the layout and logic so the build has a clear backbone.</p>
+      </div>
+      <div class="approach-item">
+        <p class="approach-num">03</p>
+        <p class="approach-title">Build</p>
+        <p class="approach-desc">Write clean HTML, CSS and JS, testing as I go.</p>
+      </div>
+      <div class="approach-item">
+        <p class="approach-num">04</p>
+        <p class="approach-title">Refine</p>
+        <p class="approach-desc">Check the details — spacing, responsiveness, and how it actually feels to use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap contact-inner">
+    <div>
+      <p class="eyebrow" style="color:#ff8a97;">// Let's connect</p>
+      <h2 class="contact-title" style="margin-top:10px;">LET'S BUILD<br>SOMETHING<span class="accent">.</span></h2>
+      <p style="color:#e8c9ce;margin-top:18px;font-size:15px;max-width:40ch;">Open to internships, freelance frontend work, and projects where I can learn by doing.</p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:Yvonebosire@gmail.com"><span class="ico">✉</span> Yvonebosire@gmail.com</a>
+      <a class="contact-link" href="https://github.com/Ivy459" target="_blank" rel="noopener"><span class="ico">⌥</span> github.com/Ivy459</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE" target="_blank" rel="noopener"><span class="ico">in</span> linkedin.com/in/your-handle</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Yvonne Bosire — Built with HTML, CSS &amp; JS.</footer>
+
+<script>
+  const lines = [
+    { pre: 'const ', tk: 'developer', mid: ' = {', str: '' , close:''},
+    { indent:true, key:'name:', str: '"Yvonne Bosire"' },
+    { indent:true, key:'role:', str: '"Frontend Developer & Data Analyst"' },
+    { indent:true, key:'loves:', str: '"solving problems creatively"' },
+    { indent:true, key:'status:', str: '"open to work"' },
+    { close:true }
+  ];
+  const box = document.getElementById('typedBox');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function renderStatic(){
+    box.innerHTML =
+      '<span class="tk">const</span> developer = {<br>' +
+      '&nbsp;&nbsp;name: <span class="str">"Yvonne Bosire"</span>,<br>' +
+      '&nbsp;&nbsp;role: <span class="str">"Frontend Developer &amp; Data Analyst"</span>,<br>' +
+      '&nbsp;&nbsp;loves: <span class="str">"solving problems creatively"</span>,<br>' +
+      '&nbsp;&nbsp;status: <span class="str">"open to work"</span><br>};';
+  }
+
+  if(prefersReduced){
+    renderStatic();
+  } else {
+    const full = [
+      '<span class="tk">const</span> developer = {',
+      '&nbsp;&nbsp;name: <span class="str">"Yvonne Bosire"</span>,',
+      '&nbsp;&nbsp;role: <span class="str">"Frontend Developer &amp; Data Analyst"</span>,',
+      '&nbsp;&nbsp;loves: <span class="str">"solving problems creatively"</span>,',
+      '&nbsp;&nbsp;status: <span class="str">"open to work"</span>',
+      '};'
+    ];
+    let li = 0;
+    function typeLine(){
+      if(li >= full.length){
+        box.innerHTML += '<span class="type-cursor"></span>';
+        return;
+      }
+      box.innerHTML += (li>0?'<br>':'') + full[li];
+      li++;
+      setTimeout(typeLine, 260);
+    }
+    typeLine();
+  }
+</script>
+
+</body>
+</html>
